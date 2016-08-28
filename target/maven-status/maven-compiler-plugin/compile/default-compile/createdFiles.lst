@@ -1,0 +1,5 @@
+com\baxter\hl7\bootconfig\HL7BootConfiguration.class
+com\baxter\hl7\gateway\IntInboundJMSGateway.class
+com\baxter\hl7\serviceactivator\PrintBean.class
+com\baxter\hl7\filter\CustomerHL7PoisonFilter.class
+com\baxter\hl7\PocApplication.class
