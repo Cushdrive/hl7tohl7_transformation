@@ -12,7 +12,7 @@ import com.baxter.hl7.serviceactivator.PrintBean;
 @Configuration
 public class HL7BootConfiguration {
 	
-	private static final String QUEUE_URL = "tcp://USDBBENDERJ4.global.baxter.com:61616";
+	private static final String QUEUE_URL = "tcp://192.168.2.4:61616";
 	private static final String QUEUE_NAME = "POC_QUEUE";
 	
 	
@@ -27,7 +27,7 @@ public class HL7BootConfiguration {
 	public CachingConnectionFactory connectionFactory() {
 		CachingConnectionFactory returnval = new CachingConnectionFactory();
 		returnval.setTargetConnectionFactory(targetConnectionFactory());
-		returnval.setSessionCacheSize(10);
+		returnval.setSessionCacheSize(1);
 		return returnval;
 	}
 	

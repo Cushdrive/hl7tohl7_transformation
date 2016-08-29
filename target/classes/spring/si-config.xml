@@ -8,6 +8,16 @@
 	<intg:channel id="inboundChannel" />
 	<jms:inbound-gateway id="jmshl7in" request-channel="inboundChannel" request-destination="requestQueue"/>
 	<!-- <intg:filter input-channel="inboundChannel" output-channel="fromFilterChannel" ref="hl7PoisonFilter" /> -->
-	<intg:service-activator input-channel="inboundChannel" ref="printBean" />
+	<!--<intg:service-activator input-channel="inboundChannel" ref="printBean" />-->
+    <intg:transformer input-channel="inboundChannel" output-channel="hl7v24InboundCustomizerChannel"
+                      ref="HL7ParserV22" method="parseMessage"/>
+    <intg:channel id="hl7v24InboundCustomizerChannel"/>
+    <intg:transformer input-channel="hl7v24InboundCustomizerChannel" output-channel="hl7v24InboundPrintChannel"
+                      ref="HL7BaxterClinicV22" method="customizeHL7"/>
+
+    <intg:channel id="hl7v24InboundPrintChannel"/>
+
+    <intg:service-activator id="hl724Processor" input-channel="hl7v24InboundPrintChannel" ref="printBean"
+                                   method="printContents"/>
 
 </beans>
